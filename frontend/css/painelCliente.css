@@ -1,0 +1,84 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#mainboard {
+
+    height:800px;
+    width:600px;
+
+    background-color: gray;
+    border-radius: 25px;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+#userboard {
+
+    height: 300px;
+    width: 500px;
+
+    background-color: white;
+
+    border-radius: 25px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.mainboardButton {
+
+    height: 60px;
+    width: 300px;
+
+    border-radius: 25px;
+    border: 0;
+
+    background: white;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    transition: background-color 0.15s;
+    cursor: pointer;
+}
+
+.mainboardButton:hover {
+
+    background-color: darkgrey;
+}
+
+.mainboardButton:active {
+
+    background-color: white;
+}
+
+.displayText {
+
+    position: relative;
+    left: 5%;
+    top: 10%;
+}
+
+#displayNome {
+
+    font-size:25px;
+}
+
+#displayPortrait {
+
+    border-radius: 100%;
+
+    align-self: center;
+    position: relative;
+    bottom:35%;
+    left: 25%;
+}
