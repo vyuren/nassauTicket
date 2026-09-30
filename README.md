@@ -3,7 +3,7 @@
 ## Descrição
 - nassauTicket é um projeto que se consiste em um sistema de atendimento ao cliente.
 
-## Integrantes
+## Membros
 - Carlos Vinicius - 01906085 - Scrum Master & Desenvolvedor;
 - Anderson Ricardo - 01882762 - Desenvolvedor;
 - Pablo Leone - 01811660 - Testador;
