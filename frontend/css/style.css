@@ -1,6 +1,7 @@
 body{
 
     display:flex;
+    flex-direction:row;
 }
 
 button {
@@ -11,11 +12,14 @@ button {
     border-radius: 50px;
 
     font-size: 30px;
+    width: 380px;
+    height: 60px;
     padding: 10px;
     margin: 20px;
 
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 button:hover {
@@ -37,9 +41,8 @@ button:active {
     height: 800px;
     width: 600px;
 
-    position: fixed;
-    right: 20px;
-    bottom: 7.5%;
+    position: relative;
+    left: 30%;
 
     display: flex;
     flex-direction: column;
@@ -49,8 +52,8 @@ button:active {
 
 .titulo {
 
-    font-size: 40px;
-    position: fixed;
-    left: 30px;
-    bottom: 70%;
+    font-size: 70px;
+    
+    position: relative;
+    align-self: flex-start;
 }
