@@ -2,24 +2,23 @@ body{
 
     display:flex;
     flex-direction:row;
+    margin: 30px;
 }
 
 button {
 
-    background: rgb(226, 226, 226);
+    background: white;
     background-size: 20px;
     border: 0px;
     border-radius: 50px;
 
-    font-size: 30px;
+    font-size: 18px;
+    font-weight: bolder;
     width: 380px;
     height: 60px;
-    padding: 10px;
-    margin: 20px;
+    padding: 12px;
+    margin: 12px;
 
-    display: flex;
-    flex-direction: column;
-    text-align: center;
 }
 
 button:hover {
@@ -38,11 +37,11 @@ button:active {
     background-color: rgb(190, 190, 190);
     border-radius: 50px;
 
-    height: 800px;
+    height: 600px;
     width: 600px;
 
     position: relative;
-    left: 30%;
+    align-self: flex-end;
 
     display: flex;
     flex-direction: column;
