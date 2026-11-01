@@ -5,7 +5,8 @@ body {
 
 #mainboard {
 
-    height:800px;
+    min-height: 800px;
+    max-height: fit-content;
     width:600px;
 
     background-color: gray;
@@ -28,10 +29,9 @@ body {
 
     border-radius: 25px;
     
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    overflow: hidden;
+    display: grid;
+
+    overflow:hidden;
 }
 
 .mainboardButton {
@@ -64,8 +64,9 @@ body {
 .displayText {
 
     position: relative;
-    left: 5%;
-    top: 10%;
+
+    place-self: start start;
+    margin: 12px;
 }
 
 #displayNome {
@@ -77,8 +78,6 @@ body {
 
     border-radius: 100%;
 
-    align-self: center;
-    position: relative;
-    bottom:35%;
-    left: 25%;
+    position:relative;
+    place-self:start end;
 }

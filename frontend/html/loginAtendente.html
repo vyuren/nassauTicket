@@ -7,19 +7,23 @@
     <link rel="stylesheet" href="../css/loginAtendente.css">
 </head>
 <body>
-    <h1 class="title">Nassau Ticket</h1>
+     <h1 class="title">Nassau Ticket</h1>
     
     <div class="board">
         
 
+        <form id="login">
+            <p>Senha</p><br>
+            <input class="password" type="password" maxlength="20"><br>
+            <p>E-mail</p><br>
+            <input class="email" type="email"><br>
 
-        <p>Senha</p>
-        <input class="password" type="password" maxlength="20">
-        <p>E-mail</p>
-        <input class="email">
-
-        <button class="loginCliente">Fazer Login como Atendente</button>
+            <button class="fazerLogin">Fazer Login como Cliente</button>
+            
+        </form><br>
+        
         <button class="esqueciSenha">Esqueci minha Senha</button>
-        <button class="criarConta" onclick="window.location.href='registroAtendente.html'">Criar Conta</button>
+        <button class="criarConta" onclick="window.location.href='registroCliente.html'">Criar Conta</button>
+    </div>
 </body>
 </html>
