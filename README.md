@@ -5,7 +5,7 @@
 
 ## Membros
 - Carlos Vinicius - 01906085 - Scrum Master & Desenvolvedor;
-- Anderson Ricardo - 01882762 - Desenvolvedor;
+- Anderson Ricardo - 01882762 - Testador;
 - Pablo Leone - 01811660 - Testador;
 - Lucas Vaz - 01928615 - Documentador.
 
@@ -18,4 +18,4 @@
 - MySQL.
 
 # Como acessar o Projeto
-- link (Work in Progress).
+- link (W.I.P).
