@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/painelCliente.css">
 </head>
-<body>
+<body data-auth-page="panel" data-profile="CLIENTE">
     
     <div id="mainboard">
         <br><div id="userboard">
             <br>
-            <label class="displayText" id="displayNome">Olá, usuário</label><br><br>
-            <label class="displayText" id="displayId"> ID: 00000000</label> <br>
+            <label class="displayText" id="displayNome">Carregando usuário...</label><br><br>
+            <label class="displayText" id="displayId"></label> <br>
             <img src="../assets/Portrait_Placeholder.png" width="150px" height="150px" id="displayPortrait">
         </div><br>
         <button class="mainboardButton"> Novo Agendamento</button><br>
         <button class="mainboardButton"> Acessar Agendamentos</button><br>
+        <button class="mainboardButton" id="logout" type="button">Sair</button>
 
         <div id="ultimasChamadas">
-
-
+            <p id="auth-message" role="alert" aria-live="polite"></p>
         </div>
     </div>
 
+    <script src="../javascript/auth.js"></script>
 </body>
 </html>

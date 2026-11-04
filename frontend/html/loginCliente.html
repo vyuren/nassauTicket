@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nassau Ticket</title>
     <link rel="stylesheet" href="../css/loginCliente.css">
 </head>
-<body>
+<body data-auth-page="login" data-profile="CLIENTE">
 
     <h1 class="title">Nassau Ticket</h1>
     
@@ -15,16 +15,17 @@
 
         <form id="login">
             <p>Senha</p><br>
-            <input class="password" type="password" maxlength="20"><br>
+            <input class="password" name="senha" type="password" maxlength="20" required><br>
             <p>E-mail</p><br>
-            <input class="email" type="email"><br>
+            <input class="email" name="email" type="email" required><br>
 
-            <button class="fazerLogin">Fazer Login como Cliente</button>
+            <button class="fazerLogin" type="submit">Fazer Login como Cliente</button>
             
         </form><br>
-        
+        <p id="auth-message" role="alert" aria-live="polite"></p>
         <button class="esqueciSenha">Esqueci minha Senha</button>
         <button class="criarConta" onclick="window.location.href='registroCliente.html'">Criar Conta</button>
     </div>
+    <script src="../javascript/auth.js"></script>
 </body>
 </html>

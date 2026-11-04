@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/frontend/css/registroCliente.css">
+    <link rel="stylesheet" href="../css/registroCliente.css">
 </head>
-<body>
+<body data-auth-page="register" data-profile="CLIENTE">
     <div id="board">
 
         <form id="cadastro">
@@ -15,10 +15,12 @@
             <input placeholder="senha" id="senha" type="password" minlength="8" maxlength="20" required><br>
             <input placeholder="e-mail" id="email" type="email" maxlength="50" required><br>
             <input placeholder="000.000.000-00" id="cpf" name="cpf" required maxlength="14"><br>
-            <input placeholder="data de nascimento" type="date" required><br>
+            <input placeholder="data de nascimento" id="nascimento" name="nascimento" type="date" required><br>
 
-            <button id="confirmar">Confirmar</button>
+            <button id="confirmar" type="submit">Confirmar</button>
         </form>
+        <p id="auth-message" role="alert" aria-live="polite"></p>
     </div>
+    <script src="../javascript/auth.js"></script>
 </body>
 </html>

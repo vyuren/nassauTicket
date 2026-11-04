@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Atendente | Nassau Ticket</title>
+    <link rel="stylesheet" href="../css/painelCliente.css">
+</head>
+<body data-auth-page="panel" data-profile="ATENDENTE">
+    <div id="mainboard">
+        <div id="userboard">
+            <label class="displayText" id="displayNome">Carregando usuário...</label>
+            <label class="displayText" id="displayId"></label>
+        </div>
+        <p id="auth-message" role="alert" aria-live="polite"></p>
+        <button class="mainboardButton" id="logout" type="button">Sair</button>
+    </div>
+    <script src="../javascript/auth.js"></script>
+</body>
+</html>
