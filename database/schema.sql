@@ -29,8 +29,9 @@ CREATE TABLE senhas(
     tipo VARCHAR(12) NOT NULL,
     prioridade NUMERIC(3, 0),
     descricao VARCHAR(50),
-    id_cliente INTEGER,
+    id_cliente INTEGER NOT NULL,
     id_atendente INTEGER,
+    status VARCHAR(20) NOT NULL DEFAULT 'ABERTA',
 
     FOREIGN KEY(id_cliente) REFERENCES clientes(id),
     FOREIGN KEY(id_atendente) REFERENCES atendentes(id)

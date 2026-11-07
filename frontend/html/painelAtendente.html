@@ -7,14 +7,22 @@
     <link rel="stylesheet" href="../css/painelCliente.css">
 </head>
 <body data-auth-page="panel" data-profile="ATENDENTE">
-    <div id="mainboard">
-        <div id="userboard">
+    <main id="mainboard">
+        <section id="userboard" aria-label="Perfil do atendente">
             <label class="displayText" id="displayNome">Carregando usuário...</label>
             <label class="displayText" id="displayId"></label>
-        </div>
+        </section>
+        <section class="panel-section" id="ultimasChamadas" aria-labelledby="tickets-title">
+            <div class="section-heading">
+                <h1 id="tickets-title">Últimos 5 chamados</h1>
+                <button class="refresh-button" id="refresh-tickets" type="button">Atualizar</button>
+            </div>
+            <ol class="ticket-list" id="ticket-board" aria-live="polite"></ol>
+        </section>
         <p id="auth-message" role="alert" aria-live="polite"></p>
+        <p id="ticket-message" role="status" aria-live="polite"></p>
         <button class="mainboardButton" id="logout" type="button">Sair</button>
-    </div>
+    </main>
     <script src="../javascript/auth.js"></script>
 </body>
 </html>

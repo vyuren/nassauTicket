@@ -1,83 +1,175 @@
 body {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 24px;
+    box-sizing: border-box;
+    background: #f1f3f5;
+    color: #202124;
+    font-family: Arial, sans-serif;
 }
 
 #mainboard {
-
-    min-height: 800px;
-    max-height: fit-content;
-    width:600px;
-
-    background-color: gray;
-    border-radius: 25px;
-
+    width: min(100%, 760px);
+    padding: 24px;
+    box-sizing: border-box;
+    background-color: #dedede;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
-    text-align: center;
-    align-items: center;
-
-    overflow: hidden;
+    gap: 20px;
 }
 
 #userboard {
-
-    height: 300px;
-    width: 500px;
-
+    position: relative;
+    min-height: 130px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
     background-color: white;
-
-    border-radius: 25px;
-    
-    display: grid;
-
-    overflow:hidden;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8px;
 }
 
 .mainboardButton {
-
-    height: 60px;
-    width: 300px;
-
-    border-radius: 25px;
+    min-height: 48px;
+    width: 100%;
     border: 0;
-
+    border-radius: 12px;
     background: white;
-
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
-
-    transition: background-color 0.15s;
     cursor: pointer;
+    transition: background-color 0.15s;
 }
 
-.mainboardButton:hover {
-
-    background-color: darkgrey;
+.mainboardButton:hover,
+.refresh-button:hover {
+    background-color: #e8e8e8;
 }
 
-.mainboardButton:active {
-
-    background-color: white;
+.mainboardButton:disabled {
+    cursor: wait;
+    opacity: 0.65;
 }
 
 .displayText {
-
-    position: relative;
-
-    place-self: start start;
-    margin: 12px;
+    margin: 0;
 }
 
 #displayNome {
-
-    font-size:25px;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 #displayPortrait {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 88px;
+    height: 88px;
+    align-self: flex-end;
+    border-radius: 50%;
+}
 
-    border-radius: 100%;
+.panel-section {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background: white;
+    border-radius: 16px;
+}
 
-    position:relative;
-    place-self:start end;
+.panel-section h1,
+.panel-section h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+#ticket-form {
+    display: grid;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+#ticket-type {
+    min-height: 46px;
+    padding: 8px 12px;
+    border: 1px solid #aeb4bb;
+    border-radius: 10px;
+    background: white;
+    font-size: 16px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.refresh-button {
+    padding: 9px 14px;
+    border: 1px solid #c8cdd2;
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+}
+
+.ticket-list {
+    display: grid;
+    gap: 12px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ticket-card {
+    padding: 14px;
+    border: 1px solid #dfe3e7;
+    border-radius: 12px;
+}
+
+.ticket-card h3,
+.ticket-card p {
+    margin: 0 0 8px;
+}
+
+.ticket-card p:last-of-type {
+    margin-bottom: 0;
+}
+
+.ticket-action {
+    margin-top: 12px;
+    padding: 9px 14px;
+    border: 0;
+    border-radius: 9px;
+    background: #e9edf2;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#auth-message,
+#ticket-message {
+    margin: 0;
+}
+
+@media (max-width: 520px) {
+    body {
+        padding: 12px;
+    }
+
+    #mainboard {
+        padding: 14px;
+    }
+
+    .panel-section {
+        padding: 14px;
+    }
 }

@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = `http://${window.location.hostname || "localhost"}:8080`;
 const loginPages = {
     CLIENTE: "../html/loginCliente.html",
     ATENDENTE: "../html/loginAtendente.html"
@@ -105,10 +105,150 @@ async function checkSessionOnPage() {
             if (id) {
                 id.textContent = `ID: ${user.id}`;
             }
+            setupTicketPanel(user);
         }
     } catch (error) {
         showMessage(error.message);
     }
+}
+
+const ticketTypeLabels = {
+    PRIORITARIA: "Prioritário",
+    GERAL: "Geral",
+    EXAME: "Exame"
+};
+const ticketStatusLabels = {
+    ABERTA: "Aberto",
+    EM_ATENDIMENTO: "Em atendimento",
+    FECHADA: "Fechado"
+};
+
+function showTicketMessage(message) {
+    const element = document.getElementById("ticket-message");
+    if (element) {
+        element.textContent = message;
+    }
+}
+
+function setupTicketPanel(user) {
+    const board = document.getElementById("ticket-board");
+    if (!board) {
+        return;
+    }
+
+    document.getElementById("refresh-tickets")?.addEventListener("click", () => {
+        loadLatestTickets(user);
+    });
+
+    const form = document.getElementById("ticket-form");
+    form?.addEventListener("submit", async event => {
+        event.preventDefault();
+        const submit = document.getElementById("ticket-submit");
+        const tipo = form.elements.tipo.value;
+        if (submit) {
+            submit.disabled = true;
+        }
+        showTicketMessage("Abrindo chamado...");
+        try {
+            const result = await requestApi(`/senha/${encodeURIComponent(tipo)}`, { method: "POST" });
+            showTicketMessage(`Chamado aberto. Sua senha é ${result.codigoSenha}.`);
+            await loadLatestTickets(user);
+        } catch (error) {
+            showTicketMessage(error.message);
+        } finally {
+            if (submit) {
+                submit.disabled = false;
+            }
+        }
+    });
+
+    loadLatestTickets(user);
+}
+
+async function loadLatestTickets(user) {
+    const board = document.getElementById("ticket-board");
+    if (!board) {
+        return;
+    }
+
+    board.replaceChildren();
+    const loading = document.createElement("li");
+    loading.textContent = "Carregando chamados...";
+    board.append(loading);
+
+    try {
+        const tickets = await requestApi("/senha/ultimos");
+        board.replaceChildren();
+        if (tickets.length === 0) {
+            const empty = document.createElement("li");
+            empty.textContent = "Ainda não há chamados.";
+            board.append(empty);
+            return;
+        }
+        tickets.forEach(ticket => board.append(createTicketCard(ticket, user)));
+    } catch (error) {
+        board.replaceChildren();
+        const failure = document.createElement("li");
+        failure.textContent = error.message;
+        board.append(failure);
+    }
+}
+
+function createTicketCard(ticket, user) {
+    const card = document.createElement("li");
+    card.className = "ticket-card";
+
+    const title = document.createElement("h3");
+    title.textContent = ticket.codigoSenha;
+    card.append(title);
+
+    const details = [
+        `Tipo: ${ticketTypeLabels[ticket.tipo] || ticket.tipo}`,
+        `Status: ${ticketStatusLabels[ticket.status] || ticket.status}`,
+        `Cliente: ${ticket.clienteNome || "Não informado"}`,
+        `Data: ${ticket.dataEmissao.split("-").reverse().join("/")}`
+    ];
+    if (ticket.atendenteNome) {
+        details.push(`Atendente: ${ticket.atendenteNome}`);
+    }
+    details.forEach(detail => {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = detail;
+        card.append(paragraph);
+    });
+
+    if (user.perfil === "ATENDENTE") {
+        const isAssignedAttendant = ticket.atendenteId === user.id;
+        const action = ticket.status === "ABERTA"
+            ? { label: "Atender chamado", path: `/senha/${ticket.id}/atender` }
+            : ticket.status === "EM_ATENDIMENTO" && isAssignedAttendant
+                ? { label: "Fechar chamado", path: `/senha/${ticket.id}/fechar` }
+                : null;
+
+        if (action) {
+            const button = document.createElement("button");
+            button.className = "ticket-action";
+            button.type = "button";
+            button.textContent = action.label;
+            button.addEventListener("click", async () => {
+                button.disabled = true;
+                showTicketMessage(`${action.label}...`);
+                try {
+                    await requestApi(action.path, { method: "POST" });
+                    showTicketMessage(ticket.status === "ABERTA"
+                        ? "Chamado atribuído a você."
+                        : "Chamado fechado.");
+                    await loadLatestTickets(user);
+                } catch (error) {
+                    showTicketMessage(error.message);
+                    button.disabled = false;
+                }
+            });
+            card.append(button);
+        }
+    }
+
+    return card;
 }
 
 function setupAuthenticationForm() {

@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = `http://${window.location.hostname || "localhost"}:8080`;
 
 fetch(`${API_BASE_URL}/auth/sessao`, { credentials: "include" })
     .then(response => {

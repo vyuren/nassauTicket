@@ -116,6 +116,21 @@ public class AuthService {
     }
 
     @Transactional
+    public AuthenticatedUser requireSession(String rawToken){
+        return findSession(rawToken)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Sessão inválida ou expirada."));
+    }
+
+    @Transactional
+    public AuthenticatedUser requireProfile(String rawToken, String expectedProfile){
+        AuthenticatedUser user = requireSession(rawToken);
+        if (!expectedProfile.equals(user.perfil())){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Você não tem permissão para esta operação.");
+        }
+        return user;
+    }
+
+    @Transactional
     public void logout(String rawToken){
         if (rawToken != null && !rawToken.isBlank()){
             loginSessionRepository.deleteById(hashToken(rawToken));

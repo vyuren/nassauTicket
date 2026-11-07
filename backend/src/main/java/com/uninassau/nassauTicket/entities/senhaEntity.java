@@ -6,9 +6,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -35,11 +38,17 @@ public class senhaEntity {
     @Column(length = 50)
     private String descricao;
 
-    @Column(name = "id_cliente")
-    private Long idCliente;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_cliente")
+    private clienteEntity cliente;
 
-    @Column(name = "id_atendente")
-    private Long idAtendente;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_atendente")
+    private atendenteEntity atendente;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private StatusSenha status = StatusSenha.ABERTA;
 
     protected senhaEntity() {
     }
@@ -50,7 +59,51 @@ public class senhaEntity {
         this.tipo = tipo;
     }
 
+    public senhaEntity(LocalDate dataEmissao, String codigoSenha, TipoSenha tipo, clienteEntity cliente) {
+        this(dataEmissao, codigoSenha, tipo);
+        this.cliente = cliente;
+    }
+
     public String getCodigoSenha() {
         return codigoSenha;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDate getDataEmissao() {
+        return dataEmissao;
+    }
+
+    public TipoSenha getTipo() {
+        return tipo;
+    }
+
+    public clienteEntity getCliente() {
+        return cliente;
+    }
+
+    public atendenteEntity getAtendente() {
+        return atendente;
+    }
+
+    public StatusSenha getStatus() {
+        return status == null ? StatusSenha.ABERTA : status;
+    }
+
+    public void atender(atendenteEntity atendente) {
+        if (getStatus() != StatusSenha.ABERTA) {
+            throw new IllegalStateException("Somente chamados abertos podem ser atendidos.");
+        }
+        this.atendente = atendente;
+        this.status = StatusSenha.EM_ATENDIMENTO;
+    }
+
+    public void fechar() {
+        if (getStatus() != StatusSenha.EM_ATENDIMENTO) {
+            throw new IllegalStateException("Somente chamados em atendimento podem ser fechados.");
+        }
+        this.status = StatusSenha.FECHADA;
     }
 }

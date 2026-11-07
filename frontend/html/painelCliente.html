@@ -3,26 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Painel do Cliente | Nassau Ticket</title>
     <link rel="stylesheet" href="../css/painelCliente.css">
 </head>
 <body data-auth-page="panel" data-profile="CLIENTE">
     
-    <div id="mainboard">
-        <br><div id="userboard">
-            <br>
-            <label class="displayText" id="displayNome">Carregando usuário...</label><br><br>
-            <label class="displayText" id="displayId"></label> <br>
-            <img src="../assets/Portrait_Placeholder.png" width="150px" height="150px" id="displayPortrait">
-        </div><br>
-        <button class="mainboardButton"> Novo Agendamento</button><br>
-        <button class="mainboardButton"> Acessar Agendamentos</button><br>
-        <button class="mainboardButton" id="logout" type="button">Sair</button>
+    <main id="mainboard">
+        <section id="userboard" aria-label="Perfil do cliente">
+            <label class="displayText" id="displayNome">Carregando usuário...</label>
+            <label class="displayText" id="displayId"></label>
+            <img src="../assets/Portrait_Placeholder.png" width="150" height="150" id="displayPortrait" alt="Foto de perfil">
+        </section>
 
-        <div id="ultimasChamadas">
-            <p id="auth-message" role="alert" aria-live="polite"></p>
-        </div>
-    </div>
+        <section class="panel-section" aria-labelledby="open-ticket-title">
+            <h1 id="open-ticket-title">Abrir chamado</h1>
+            <form id="ticket-form">
+                <label for="ticket-type">Tipo de atendimento</label>
+                <select id="ticket-type" name="tipo" required>
+                    <option value="GERAL">Geral</option>
+                    <option value="EXAME">Exame</option>
+                    <option value="PRIORITARIA">Prioritário</option>
+                </select>
+                <button class="mainboardButton" id="ticket-submit" type="submit">Abrir chamado</button>
+            </form>
+            <p id="ticket-message" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="panel-section" id="ultimasChamadas" aria-labelledby="tickets-title">
+            <div class="section-heading">
+                <h2 id="tickets-title">Últimos 5 chamados</h2>
+                <button class="refresh-button" id="refresh-tickets" type="button">Atualizar</button>
+            </div>
+            <ol class="ticket-list" id="ticket-board" aria-live="polite"></ol>
+        </section>
+
+        <p id="auth-message" role="alert" aria-live="polite"></p>
+        <button class="mainboardButton" id="logout" type="button">Sair</button>
+    </main>
 
     <script src="../javascript/auth.js"></script>
 </body>

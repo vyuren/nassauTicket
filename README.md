@@ -42,3 +42,11 @@ mesmo após reiniciar o backend, e cada emissão é salva na tabela `senhas`.
 Em bancos já existentes com as tabelas `senhasPrioritarias`, `senhasGerais` e
 `senhasExames`, a atualização cria a nova tabela, mas não migra automaticamente
 os registros antigos.
+
+## Chamados nos painéis
+
+No painel do cliente, selecione Geral, Exame ou Prioritário e use **Abrir chamado**.
+O chamado é associado à sessão autenticada e aparece na lista dos cinco mais
+recentes, disponível nos dois painéis. No painel do atendente, chamados abertos
+podem ser assumidos; o atendimento grava o atendente responsável. Somente esse
+atendente pode fechar o chamado. A lista pode ser atualizada pelo botão **Atualizar**.
