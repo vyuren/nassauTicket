@@ -22,42 +22,21 @@ CREATE TABLE atendentes(
     senha VARCHAR(100)
 );
 
-CREATE TABLE senhasPrioritarias(
-    id INTEGER NOT NULL UNIQUE PRIMARY KEY,
-    dataEmissao DATE NOT NULL,
-    codigoSenha NUMERIC(12,0) NOT NULL UNIQUE,
-    prioridade NUMERIC(3, 0) NOT NULL,
-    descricao VARCHAR(50) NOT NULL,
+CREATE TABLE senhas(
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    data_emissao DATE NOT NULL,
+    codigo_senha VARCHAR(12) NOT NULL UNIQUE,
+    tipo VARCHAR(12) NOT NULL,
+    prioridade NUMERIC(3, 0),
+    descricao VARCHAR(50),
     id_cliente INTEGER,
     id_atendente INTEGER,
 
-    FOREIGN KEY(id_cliente) clientes(id),
-    FOREIGN KEY(id_atendente) atendente(id)
-
+    FOREIGN KEY(id_cliente) REFERENCES clientes(id),
+    FOREIGN KEY(id_atendente) REFERENCES atendentes(id)
 );
 
-CREATE TABLE senhasGerais(
-    id INTEGER NOT NULL UNIQUE PRIMARY KEY,
-    dataEmissao DATE NOT NULL,
-    codigoSenha NUMERIC(12,0) NOT NULL UNIQUE,
-    prioridade NUMERIC(3, 0) NOT NULL,
-    descricao VARCHAR(50) NOT NULL,
-    id_cliente INTEGER,
-    id_atendente INTEGER,
-
-    FOREIGN KEY(id_cliente) clientes(id),
-    FOREIGN KEY(id_atendente) atendente(id)
-)
-
-CREATE TABLE senhasExames(
-    id INTEGER NOT NULL UNIQUE PRIMARY KEY,
-    dataEmissao DATE NOT NULL,
-    codigoSenha NUMERIC(12,0) NOT NULL UNIQUE,
-    prioridade NUMERIC(3, 0) NOT NULL,
-    descricao VARCHAR(50) NOT NULL,
-    id_cliente INTEGER,
-    id_atendente INTEGER,
-
-    FOREIGN KEY(id_cliente) clientes(id),
-    FOREIGN KEY(id_atendente) atendente(id)
-)
+CREATE TABLE sequencia_senhas(
+    data_emissao DATE NOT NULL PRIMARY KEY,
+    ultima_sequencia INTEGER NOT NULL
+);
