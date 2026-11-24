@@ -1,0 +1,58 @@
+body {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#board {
+
+    background-color: gray;
+    min-height: 200px;
+    max-height: fit-content;
+    border-radius: 25px;
+    width: 800px;
+    align-items: center;
+
+    padding:24px;
+}
+
+input {
+
+    width: 500px;
+    height: 60px;
+    border-radius: 25px;
+    border: 0;
+    outline: 0;
+
+    font-size: 18px;
+
+    padding: 12px;
+    margin: 12px
+}
+
+#confirmar {
+
+    height: 60px;
+    width: 350px;
+    border: 0;
+    border-radius: 25px;
+
+    padding: 12px;
+    margin: 12px;
+
+    background-color: white;
+    
+}
+
+#confirmar:hover {
+    transition-duration: 0.5s;
+    background-color: darkgray;
+}
+
+#confirmar:active {
+
+    transition: 0.5s;
+    background-color: white;
+}

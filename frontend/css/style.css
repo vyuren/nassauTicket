@@ -1,21 +1,25 @@
 body{
 
     display:flex;
+    flex-direction:row;
+    margin: 30px;
 }
 
 button {
 
-    background: rgb(226, 226, 226);
+    background: white;
     background-size: 20px;
     border: 0px;
     border-radius: 50px;
 
-    font-size: 30px;
-    padding: 10px;
-    margin: 20px;
+    font-size: 18px;
+    font-weight: bolder;
+    
+    width: 380px;
+    height: 60px;
+    padding: 12px;
+    margin: 12px;
 
-    display: flex;
-    flex-direction: column;
 }
 
 button:hover {
@@ -34,12 +38,11 @@ button:active {
     background-color: rgb(190, 190, 190);
     border-radius: 50px;
 
-    height: 800px;
+    height: 600px;
     width: 600px;
 
-    position: fixed;
-    right: 20px;
-    bottom: 7.5%;
+    position: relative;
+    align-self: flex-end;
 
     display: flex;
     flex-direction: column;
@@ -49,8 +52,8 @@ button:active {
 
 .titulo {
 
-    font-size: 40px;
-    position: fixed;
-    left: 30px;
-    bottom: 70%;
+    font-size: 70px;
+    
+    position: relative;
+    align-self: flex-start;
 }

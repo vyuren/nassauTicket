@@ -1,7 +1,10 @@
 # nassauTicket
 
 ## Descrição
-- nassauTicket é um projeto que se consiste em um sistema de atendimento ao cliente.
+nassauTicket é um projeto que se consiste em um sistema de atendimento ao cliente.
+
+### AVISO
+O uso de qualquer ferramenta de Inteligência Artificial foi utilizando somente para auxiliar no tempo de desenvolvimento e entrega de sprints.
 
 ## Membros
 - Carlos Vinicius - 01906085 - Scrum Master & Desenvolvedor;
@@ -13,9 +16,37 @@
 - HTML;
 - CSS;
 - JavaScript;
-- React;
 - Spring Boot;
 - MySQL.
 
-# Como acessar o Projeto
-- link (W.I.P).
+## Login e sessão
+
+O backend usa o MySQL configurado em `backend/src/main/resources/application.properties`.
+Inicie-o com `cd backend && ./mvnw spring-boot:run`. Para abrir a interface, sirva a
+pasta `frontend` em `http://localhost` (por exemplo, com a extensão Live Server do VS
+Code); não abra os arquivos diretamente como `file://`.
+
+Cadastro e login de clientes e atendentes criam uma sessão com validade de 30 dias.
+O navegador guarda o token em cookie `HttpOnly`, e o backend persiste somente o hash
+do token no banco. Ao voltar ao site, o perfil autenticado é enviado ao painel
+correspondente. O botão **Sair** encerra a sessão no servidor e remove o cookie.
+
+## Geração de códigos de senha
+
+Envie `POST /senha/PRIORITARIA`, `POST /senha/GERAL` ou `POST /senha/EXAME` para
+gerar um código no formato `YYMMDD-PPSSS` (por exemplo, `261107-PR001`). A sequência
+é compartilhada entre os três tipos, reinicia a cada dia e fica limitada a 999
+senhas por dia. O contador diário é persistido no MySQL para manter a numeração
+mesmo após reiniciar o backend, e cada emissão é salva na tabela `senhas`.
+
+Em bancos já existentes com as tabelas `senhasPrioritarias`, `senhasGerais` e
+`senhasExames`, a atualização cria a nova tabela, mas não migra automaticamente
+os registros antigos.
+
+## Chamados nos painéis
+
+No painel do cliente, selecione Geral, Exame ou Prioritário e use **Abrir chamado**.
+O chamado é associado à sessão autenticada e aparece na lista dos cinco mais
+recentes, disponível nos dois painéis. No painel do atendente, chamados abertos
+podem ser assumidos; o atendimento grava o atendente responsável. Somente esse
+atendente pode fechar o chamado. A lista pode ser atualizada pelo botão **Atualizar**.
