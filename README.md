@@ -19,6 +19,13 @@ O uso de qualquer ferramenta de Inteligência Artificial foi utilizando somente 
 - Spring Boot;
 - MySQL.
 
+## Como executar
+- Crie o banco de dados com MySQL e crie um acesso exclusivo para o backend;
+- Se utiliza Windows, utilize XAMPP para criar um host para o banco de dados;
+- Com o banco de dados ativo, edite datasource.username e datasource.password em application.properties (nassauTicket/backend/src/main/resources/...) para ter o nome e senha do banco de dados para a aplicação;
+- Inicie o backend com `cd backend && ./mvnw spring-boot:run` ou clique no botão de iniciar na sua IDE diretamente no arquivo NassauTicketApplication.java;
+- Inicie o frontend usando o Plugin Live Server do VS Code.
+
 ## Login e sessão
 
 O backend usa o MySQL configurado em `backend/src/main/resources/application.properties`.
